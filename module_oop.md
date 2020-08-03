@@ -5,14 +5,127 @@
 ### Error handling
 
 #### What does 'fail fast' mean in terms of exception handling? Why is it a good practice?
+* In systems design, a **_fail-fast_** system is one which immediately reports at its interface any condition that is
+ likely to indicate a failure. 
+* **_Fail-fast_** systems are usually designed to stop normal operation rather than attempt to continue a possibly flawed
+ process.
+* The **_fail fast_** principle stands for stopping the current operation as soon as any unexpected error occurs.
+* Adhering to this principle generally results in a more stable solution.
+*** 
 
 ## Computer Science
 
 ### Data structures
 
 #### How to find the middle element of singly linked list in O(n)?
+* Traverse linked list using two pointers. 
+* Move one pointer by one and other pointer by two. 
+* When the fast pointer reaches end slow pointer will reach middle
+ of the linked list.
+```java
+// Java program to find middle of linked list 
+class LinkedList 
+{ 
+    Node head; // head of linked list 
+  
+    /* Linked list node */
+    class Node 
+    { 
+        int data; 
+        Node next; 
+        Node(int d) 
+        { 
+            data = d; 
+            next = null; 
+        } 
+    } 
+  
+    /* Function to print middle of linked list */
+    void printMiddle() 
+    { 
+        Node slow_ptr = head; 
+        Node fast_ptr = head; 
+        if (head != null) 
+        { 
+            while (fast_ptr != null && fast_ptr.next != null) 
+            { 
+                fast_ptr = fast_ptr.next.next; 
+                slow_ptr = slow_ptr.next; 
+            } 
+            System.out.println("The middle element is [" + 
+                                slow_ptr.data + "] \n"); 
+        } 
+    } 
+}
+```
+
 #### Given an array of integers going from 1 to 100 (both inclusive) there is a duplicated entry. How to find it?
+1. Declare and initialize an array.
+2. Duplicate elements can be found using two loops. 
+3. The outer loop will iterate through the array from 0 to length of
+ the array. The outer loop will select an element. 
+4. The inner loop will be used to compare the selected element with the rest of the elements of the array.
+5. If a match is found which means the duplicate element is found then, display the element.
+```java
+public class DuplicateElement {  
+    public static void main(String[] args) {
+        System.out.println("Duplicate elements in given array: ");  
+        //Searches for duplicate element  
+        for(int i = 0; i < arr.length; i++) {  
+            for(int j = i + 1; j < arr.length; j++) {  
+                if(arr[i] == arr[j])  
+                    System.out.println(arr[j]);  
+            }  
+        }  
+    }  
+}  
+```
+
 #### What is a linked list? How to find if a linked list has a loop?
+1. **_Linked List_** is a part of the Collection framework present in _java. util package_. 
+2. This class is an implementation of the LinkedList data structure which is a linear data structure where the elements
+ are not stored in contiguous locations and every element is a separate object with a data part and address part.
+3. The elements are linked using pointers and addresses. Each element is known as a __node__.
+4. The nodes cannot be accessed directly instead we need to start from the head and follow through the link to reach
+ to a node we wish to access.
+5. Advantages of **_Linked List_**:
+    * Insertion and Deletion Operations are Easier.
+    * Efficient Memory Utilization, i.e. no need to pre-allocate memory.
+    * Faster Access time,can be expanded in constant time without memory overhead.
+* To find if a linked list has a loop:
+    * Have two references to the list and move them at different speeds.
+    * If the linked list has a loop they will definitely meet.
+    * Else either of the two references(or their next) will become null.
+```java
+public class LinkedList {
+    boolean hasLoop(Node first) {
+    
+        if(first == null) // list does not exist..so no loop either
+            return false;
+    
+        Node slow, fast; // create two references.
+    
+        slow = fast = first; // make both refer to the start of the list
+    
+        while(true) {
+    
+            slow = slow.next;          // 1 hop
+    
+            if(fast.next != null)
+                fast = fast.next.next; // 2 hops
+            else
+                return false;          // next node null => no loop
+    
+            if(slow == null || fast == null) // if either hits null..no loop
+                return false;
+    
+            if(slow == fast) // if the two ever meet...we must have a loop
+                return true;
+        }
+    }
+}
+```
+
 #### What is the Big O time complexity of the common operations in an ArrayList, LinkedList, HashMap? And of a bubble sort, quicksort, finding items in a Binary Search tree?
 #### How does HashMap work?
 #### Why is it important for keys in a map to have an immutable type? (Consider String for example.)

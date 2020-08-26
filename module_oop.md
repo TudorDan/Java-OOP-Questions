@@ -82,7 +82,7 @@ public class DuplicateElement {
 ```
 
 #### What is a linked list? How to find if a linked list has a loop?
-1. **_Linked List_** is a part of the Collection framework present in _java. util package_. 
+1. **_Linked List_** is a part of the Collection framework present in _java.util_ package. 
 2. This class is an implementation of the LinkedList data structure which is a linear data structure where the elements
  are not stored in contiguous locations and every element is a separate object with a data part and address part.
 3. The elements are linked using pointers and addresses. Each element is known as a __node__.
@@ -127,12 +127,36 @@ public class LinkedList {
 ```
 
 #### What is the Big O time complexity of the common operations in an ArrayList, LinkedList, HashMap? And of a bubble sort, quicksort, finding items in a Binary Search tree?
+* ArrayList has O(n) time complexity for arbitrary indices of add/remove, but O(1) for the operation at the end of the list. 
+* LinkedList has O(n) time complexity for arbitrary indices of add/remove, but O(1) for operations at end/beginning of
+ the List.
+* Hashmap has O(1) time complexity for both get and put operation.
+* A Binary Search Tree data structure, first creates a binary search tree from the elements of the input list or
+ array and then performs an in-order traversal on the created binary search tree to get the elements in sorted order.
+* Average Case Time Complexity in a Binary Search Tree O(n log n).
+
 #### How does HashMap work?
+* HashMap implementation is based on the the principles of a hashtable: key-value pairs are stored in what is known as
+ buckets which together make up what is called a table, which is actually an internal array.
+* When a value is added to the map under a key, the hashCode() API of the key object is called to retrieve what is
+ known as the initial hash value.
+* Next, the hash() API of the hash map is called internally to compute the final hash value using the initial hash value.
+* This final hash value ultimately boils down to an index in the internal array or what we call a bucket location.
+
 #### Why is it important for keys in a map to have an immutable type? (Consider String for example.)
+* If immutable, the object's hashcode wont change and it allows caching the hashcode of different keys which makes
+ the overall retrieval process very fast.
+* Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve
+ the value object which was stored in HashMap.
 
 ### Other
 
 #### What is a garbage collector, in a nutshell?
+* The garbage collector, or just collector, attempts to reclaim garbage, or memory occupied by objects that are no
+ longer in use by the program. 
+* In Java, as long as an object is being referenced, the JVM considers it alive. Once an object is no longer referenced
+ and therefore is not reachable by the application code, the garbage collector removes it and reclaims the unused memory.
+***
 
 ## Programming paradigms
 

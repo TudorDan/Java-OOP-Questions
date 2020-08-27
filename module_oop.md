@@ -547,48 +547,203 @@ public class Implement {
 
 #### How many instances can be created for an abstract class?
 * We cannot create an instance of an abstract class because it does not have a complete implementation.
+***
 
 ## Programming languages
 
 ### Java
 
 #### What is autoboxing and unboxing?
+* _**Autoboxing**_ is the automatic conversion that the Java compiler makes between the primitive types and their
+ corresponding object wrapper classes.
+* For example, converting an int to an Integer, a double to a Double, and so on. 
+* If the conversion goes the other way, this is called _**unboxing**_.
+
 #### If you have a variable, that shall store a positive whole number between 0 and 200, what primitive type would you use to store it?
+* The positive number could be stored in an _**int**_.
+
 #### What is the "golden rule" of variable scoping in Java? What is the lifetime of variables?
+* "Golden rule": limit the scope of variables and constants to the smallest necessary.
+* Lifetime of a variable refers to how long the variable stays alive in memory.
+
 #### What is the purpose of the ‘equals()’ method?
+* The equals method for class Object implements the most discriminating possible equivalence relation on objects; 
+* That is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the
+ same object (x == y has the value true).
+
 #### What is the difference between '==' and 'equals()'?
+* '==' checks if both objects point to the same memory location whereas 'equals()' evaluates to the comparison of
+ values in the objects
+
 #### What does the ‘static’ keyword mean?
+* The keyword static indicates that the particular member belongs to a type itself, rather than to an instance of
+ that type. 
+* This means that only one instance of that static member is created which is shared across all instances of the class.
+
 #### Why is the main() method declared as static? Explain.
+* Java main() method is always static, so that compiler can call it without the creation of an object or before the
+ creation of an object of the class. 
+
 #### What is the default access modifier in a class?
+* Default access modifier means we do not explicitly declare an access modifier for a class, field, or method.
+* A variable or method declared without any access control modifier is available to any other class in the same package.
+
 #### What is the JVM?
+* JVM (Java Virtual Machine) is an abstract machine.
+* It is a specification that provides runtime environment in which java bytecode can be executed.
+
 #### What is the difference between the JRE and the JDK?
+* JDK is an abstract machine. It is a specification that provides runtime environment in which java bytecode can be
+ executed.
+* The difference between JDK and JRE is that JDK is the software development kit for java while JRE is the place
+ where you run your programs.
+ 
 #### What is the difference between long and Long?
+* A Long is a class, or a reference type, defined in the standard library. It stores a reference to an object
+ containing a value (a "box").
+* A long on the other hand, is a primitive type and part of the language itself.
+
 #### Can a long store bigger numbers than a Long?
+* The Long class wraps a value of the primitive type long in an object.
+* If values are out of the range -128 to 127, Use the BigInteger or BigDecimal values.
+
 #### What kind of packages do you know under java.util.* ? Bring at least 3 examples.
+* Examples: ArrayList, Date, HashMap<K,V>, Random
+
 #### What are the access modifiers in Java? Which one could we use for class?
+* The access modifiers in Java specifies the accessibility or scope of a field, method, constructor, or class.
+* Four access modifiers in java include public, private, protected and default.
+* Private and Protected keywords cannot be used for classes and interfaces.
+
 #### Can an “enum” contain methods in Java? Explain.
+* The enum class body can include methods and other fields.
+* The compiler automatically adds some special methods when it creates an enum. (For example, they have a static
+ values method that returns an array containing all of the values of the enum in the order they are declared.)
+
 #### When would you use a private/protected/public attribute? What is the difference?
+* Private; only the class in which it is declared can see it.
+* Protected: can be seen by subclasses or package members.
+* Public: Everyone can see it.
+
 #### How do you prevent developers from subclassing a class?
+* Create Private Constructor.
+* make each method final, so people can't override them.
+* put check into constructor for class:
+```
+if (this.getClass() != abc.class) { throw new RuntimeException("Subclasses not allowed"); }
+```
+
 #### How do you prevent developers from overriding a method in a subclass?
+* You can use private and static modifier to prevent method overriding.
+* You should use final modifier to prevent overriding
+
 #### How do you prevent developers from changing the value of a variable?
+* Mark the fields as final. A final keyword in declaration of object instance means the variable can't be reassigned.
+
 #### Think about money ;) How would you store a currency value, that shall support decimal parts? Think it through again, and try to think outside of the box!
+* Java has Currency class that represents the ISO 4217 currency codes.
+* BigDecimal is the best type for representing currency decimal values.
+
 #### What happens if you try to call something, that you have no access to, because of data hiding?
+* Receive IllegalAccessException: access to method denied.
+
 #### What happens if you try to delete/drop an item from an array, while you are iterating over it?
+* Receive ConcurrentModificationException.
+
 #### What happens if you try to delete/drop/add an item from a List, while you are iterating over it?
+*  A ConcurrentModificationException is thrown.
+
 #### What happens if you try to add an item to the end of an array, while you are iterating over it?
+* ConcurrentModificationException.
+
 #### If you need to access the iterator variable after a for loop, how would you do it?
+* You can provide your own counter.
+
 #### Which interfaces extend the Collection interface in Java. Which classes?
+1. Iterable Interface:  The collection interface extends the iterable interface.
+2. Collection Interface: This interface contains all the basic methods which every collection has like adding the
+ data into the collection, removing the data, clearing the data.
+3. List Interface: This is a child interface of the collection interface. This interface is dedicated to the data of
+ the list type in which we can store all the ordered collection of the objects.
+
 #### What is the connection between equals() and hashCode()? How are they used in HashMap?
+* If two objects are equal according to the equals(Object) method, then calling the hashcode() method on each of the
+ two objects must produce the same integer result.
+* In HashMap, hashCode() is used to calculate the bucket and therefore calculate the index.
+* equals() method is used to check that 2 objects are equal or not. 
+
 #### What is the difference between checked exceptions and unchecked exceptions? Could you bring example for each?
+* Checked exceptions: are the exceptions that are checked at compile time.
+    * eg:  FileNotFoundException,  IOException
+* Unchecked exceptions: are the exceptions that are checked at run time (error inside the program logic).
+    * eg: NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException.
+
 #### What is Error in Java and how does it relate to Exception?
+* Exceptions and errors both are subclasses of Throwable class.
+* The error indicates a problem that mainly occurs due to the lack of system resources.
+* Some of the examples of errors are system crash error and out of memory error. 
+
 #### When does 'finally' block run? What it is used for? Could you give an example from your projects when you would use 'finally'?
+* The finally block always executes when the try block exits.
+* This ensures that the finally block is executed even if an unexpected exception occurs.
+```java
+public class Example {
+    public void writeList() {
+        PrintWriter out = null;
+    
+        try {
+            System.out.println("Entering" + " try statement");
+    
+            out = new PrintWriter(new FileWriter("OutFile.txt"));
+            for (int i = 0; i < SIZE; i++) {
+                out.println("Value at: " + i + " = " + list.get(i));
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Caught IndexOutOfBoundsException: " +  e.getMessage());
+                                     
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " +  e.getMessage());
+                                     
+        } finally {
+            if (out != null) {
+                System.out.println("Closing PrintWriter");
+                out.close();
+            } 
+            else {
+                System.out.println("PrintWriter not open");
+            }
+        }
+    }
+}
+```
+
 #### What is the largest number you can work with in Java?
+* Integer MAX_VALUE is approx 2^31, which exceeds the 32bit memory.
+* A guess is that BigInteger can grow as large as your ram.
+
 #### When you use method overriding, can you change the access level of the method, from protected to public? Why?When you use method overriding, can you change the access level of the method, from public to protected? Why?
+* Yes, we can override a method by changing only the access modifiers in java pertaining the following rule: 
+    * The access level cannot be more restrictive than the overridden method's access level.
 #### Can the main method be overridden? Explain your answer!
+* You cannot override static methods and since the public static void main() method is static we cannot override it.
+
 #### When you use method overriding, can you throw fewer exceptions in the subclass than in the parent class? Why?
+* If SuperClass does not declare an exception, then the SubClass can only declare unchecked exceptions, but not the checked exceptions.
+*  If SuperClass declares an exception, then the SubClass can only declare the child exceptions of the exception
+ declared by the SuperClass, but not any other exception.
+* If SuperClass declares an exception, then the SubClass can declare without exception.
+  
 #### When you use method overriding, can you throw more exceptions in the subclass than in the parent class? Why?
+* The overriding method can throw those checked exceptions, which have less scope than the exception(s) declared in
+ the overridden method.
+
 #### What does "final" mean in case of a variable, method or a class?
+* When a variable is declared with final keyword, its value can't be modified, essentially, a constant.
+
 #### What is the super keyword?
+* The super keyword refers to superclass (parent) objects. 
+* It is used to call superclass methods, and to access the superclass constructor.
+
 #### What are “generics”? When to use? Show examples.
 * Generics enable types (classes and interfaces) to be parameters when defining classes, interfaces and methods.
 * The difference is that the inputs to formal parameters are values, while the inputs to type parameters are types.
@@ -612,8 +767,42 @@ Box<Integer> integerBox = new Box<Integer>();
 ```
 
 #### What is the benefit of having “generic” containers?
+* A Java compiler applies strong type checking to generic code and issues errors if the code violates type safety.
+* Fixing compile-time errors is easier than fixing runtime errors, which can be difficult to find.
+
 #### Given two Java programs on two different machines. How can you communicate between the two? What are the possible ways?
+* Java Socket programming is used for communication between the applications running on different JRE.
+* The client in socket programming must know two information: IP Address of Server, and Port number.
 #### What is an annotation? What can be annotated and how? Show examples.
+* Annotations are used to provide supplement information about a program.
+* Annotations start with ‘@’ and do not change action of a compiled program.
+* Annotations help to associate metadata (information) to the program elements (instance variables, constructors
+, methods, classes).
+* Annotations are not pure comments as they can change the way a program is treated by compiler.
+```java
+class Base 
+{ 
+     public void display() 
+     { 
+         System.out.println("Base display()"); 
+     } 
+} 
+class Derived extends Base 
+{ 
+     @Override
+     public void display(int x) 
+     { 
+         System.out.println("Derived display(int )"); 
+     } 
+  
+     public static void main(String args[]) 
+     { 
+         Derived obj = new Derived(); 
+         obj.display(); 
+     } 
+}
+```
+***
 
 ### C&#35;
 
@@ -666,4 +855,12 @@ Box<Integer> integerBox = new Box<Integer>();
 ### Database
 
 #### How can you connect your application to a database server? What are the possible ways?
+1. Install or locate the database you want to access.
+2. Include the JDBC library.
+3. Ensure the JDBC driver you need is on your classpath.
+4. Use the JDBC library to obtain a connection to the database.
+5. Use the connection to issue SQL commands.
+
 #### What do you know about database normalization?
+* Database normalization is the process of organizing the attributes of the database to reduce or eliminate data
+ redundancy (having the same data but at different places) .

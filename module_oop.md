@@ -148,6 +148,7 @@ public class LinkedList {
  the overall retrieval process very fast.
 * Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve
  the value object which was stored in HashMap.
+***
 
 ### Other
 
@@ -212,23 +213,87 @@ public class Example {
  is matched or none are.
 * When catching exceptions you want to always catch the most specific first and then the most generic (as
  RuntimeException or Exception).
+***
 
 ### Object-oriented
 
 #### What is a class?
+* A class is a blueprint from which individual objects are created. Simply put, a class represent a definition or a
+ type of object. In Java, classes can contain fields, constructors, and methods.
+* A class is a group of objects which have common properties. It is a logical entity. It can't be physical.
+* A class in Java can contain:
+    * Fields
+    * Methods
+    * Constructors
+    * Blocks
+    * Nested class and interface
+ 
 #### What is an object?
+* An object is an instance of a class. An entity that has state and behavior is known as an object.
+* State: represents the data (value) of an object.
+* Behavior: represents the behavior (functionality) of an object.
+
 #### What is a constructor?
+* A Java constructor is special method that is called when an object is instantiated. In other words, when you use
+ the "new" keyword.
+* The purpose of a Java constructor is to initializes the newly created object before it is used.
+* It has no return type, because a constructor implicitly returns the type of the object that it creates.
+
 #### Do we require parameter for constructors?
+* There are two types of constructors in Java: no-arg constructor, and parameterized constructor:
+    * a _no-argument constructor_ takes no arguments. It is called "Default Constructor" when it doesn't have any
+     parameter.
+    * a constructor which has a specific number of parameters is called a parameterized constructor. It is used to
+     provide different values to distinct objects. However, you can provide the same values also.
+
 #### What is an interface?
+* A Java interface is a bit like a Java class, except a Java interface can only contain method signatures and fields.
+* A Java interface is not intended to contain implementations of the methods, only the signature (name, parameters
+ and exceptions) of the method.
+```java
+public interface MyInterface {
+
+    public String hello = "Hello";
+
+    public void sayHello();
+}
+```
+
 #### What are access modifiers?
+* A Java access modifier specifies which classes can access a given class and its fields, constructors and methods.
+* Access modifiers can be specified separately for a class, its constructors, fields and methods.
+* Classes, fields, constructors and methods can have one of four different Java access modifiers:
+    1. default (no keyword): all members are visible within the same package but aren't accessible from other packages.
+    2. public: all other classes in all packages will be able to use it.
+    3. private: is accessible from the same class only.
+    4. protected: same package (as with package-private access level) and in addition from all subclasses of its class.
+
 #### What is data hiding?
+* It is hiding the state or internal representation of an object from the consumer of an API and providing publicly
+ accessible methods bound to the object for read-write access. 
+* This allows for hiding specific information and controlling access to internal implementation (Encapsulation).
+
 #### Can a static method use non-static members?
-* Non-static data cannot be used in static methods because there is no well-defined variable to operate on.
+* If a field is declared static, then exactly a single copy of that field is created and shared among all instances
+ of that class
+* Non-static data _cannot_ be used in static methods because there is no well-defined variable to operate on.
 * Non-static variables are part of the objects themselves. To use a non-static variable, you need to specify which
  instance of the class the variable belongs to.
 
 #### What is the difference between hiding a static method and overriding an instance method?
+* If a subclass defines a static method with the same signature as a static method in the superclass, then the
+ method in the subclass _hides_ the one in the superclass.
+* The distinction between hiding a static method and overriding an instance method has important implications:
+    * The version of the overridden instance method that gets invoked is the one in the subclass.
+    * The version of the _hidden static method_ that gets invoked depends on whether it is invoked from the superclass
+     or the subclass.
+
 #### Define the following terms: Instantiation, Attribute, Method
+* Instantiation: The new keyword is a Java operator that creates the object.
+* Attribute: another term for a field. It's typically a public constant or a public variable that can be accessed
+ directly.
+* Method: a collection of statements that are grouped together to perform an operation.
+
 #### Could we access a static variable (or method) from a non-static method? Why?
 * Non-static methods can access any static method and static variable also, without using the object of the class.
 
@@ -237,13 +302,160 @@ public class Example {
  class but cannot access non-static methods and variables.
 
 #### How many instances you have of a static variable of a given class?
+* Only one instance of a static member exists, even if you create multiple objects of the class, or if you don't
+ create any.
+
 #### Why is it not a good practice to write a lot of static methods?
+* The problem is the code becomes hard wired to that static method. There is no easy way to replace the reference to
+ the static method with something else, and if you are testing your code using automated tests, this is exactly what
+  you want to do.
+
 #### What are the features of static attributes and static methods of a class? What are the benefits, when to use them?
+* Since static variables belong to a class, they can be accessed directly using class name and don't need any object
+ reference.
+* Static fields can be accessed without object initialization.
+* Static methods also belong to a class instead of the object, and so they can be called without creating the object
+ of the class in which they reside.
+* Reasons to Use static Fields:
+    * When the value of variable is independent of objects.
+    * When the value is supposed to be shared across all objects.
+
 #### What is the ‘this’ reference?
+* The **_this_** is a keyword in Java which is used as a reference to the object of the current class, within an
+ instance method or a constructor.
+* Using this you can refer the members of a class such as constructors, variables and methods.
+
 #### What are base class, subclass and superclass?
+* A class that is derived from another class is called a _**subclass**_ (also a _**derived class**_, _**extended
+ class**_, or _**child class**_).
+* The class from which the subclass is derived is called a _**superclass**_ (also a _**base class**_ or a _**parent
+ class**_).
+
 #### Draw an object oriented family (as entities, with relations) on the whiteboard.
+![UML Diagram](WardrobeUMLDiagram.png)
+
 #### Difference between overloading and overriding?
+* _**Overloading**_ occurs when two or more methods in one class have the same method name but different parameters.
+* _**Overriding**_ means having two methods with the same method name and parameters (i.e., method signature). One of
+ the methods is in the parent class and the other is in the child class.
+
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
+1. Encapsulation: hiding the state or internal representation of an object from the consumer of an API.
+```java
+public class Car {
+ 
+    // ...
+    private int speed;
+ 
+    public int getSpeed() {
+        return color;
+    }
+ 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+    // ...
+}
+```
+2. Inheritance: mechanism that allows one class to acquire all the properties from another class by inheriting the
+ class.
+```java
+public class Vehicle {
+    private int wheels;
+    private String model;
+    public void start() {
+        // the process of starting the vehicle
+    }
+    
+    public void stop() {
+        // process to stop the vehicle
+    }
+    
+    public void honk() { 
+        // produces a default honk 
+    }
+ 
+}
+public class Car extends Vehicle {
+    private int numberOfGears;
+ 
+    public void openDoors() {
+        // process to open the doors
+    }
+}
+```
+3. Polymorphism: the ability of an OOP language to process data differently depending on their types of inputs.
+* method overloading (method read() has three different forms with different functionalities):
+```java
+public class TextFile extends GenericFile {
+    //...
+ 
+    public String read() {
+        return this.getContent()
+          .toString();
+    }
+ 
+    public String read(int limit) {
+        return this.getContent()
+          .toString()
+          .substring(0, limit);
+    }
+ 
+    public String read(int start, int stop) {
+        return this.getContent()
+          .toString()
+          .substring(start, stop);
+    }
+}
+```
+* method overrriding (A child class overrides the getFileInfo() method):
+```java
+public class GenericFile {
+    private String name;
+ 
+    //...
+ 
+    public String getFileInfo() {
+        return "Generic File Impl";
+    }
+}
+public class ImageFile extends GenericFile {
+    private int height;
+    private int width;
+ 
+    //... getters and setters
+     
+    public String getFileInfo() {
+        return "Image File Impl";
+    }
+}
+```
+4. Abstraction: hiding the complex implementation details of a program, exposing only the API required to use the
+ implementation. In Java, we achieve abstraction by using interfaces and abstract classes.
+```java
+public abstract class BoardGame {
+    public abstract void play();
+    //... concrete methods
+}
+public interface Electronic {
+    // Constant variable
+    String LED = "LED";
+    // Abstract method
+    int getElectricityUse();
+    // Static method
+    static boolean isEnergyEfficient(String electtronicType) {
+        if (electtronicType.equals(LED)) {
+            return true;
+        }
+        return false;
+    }
+    //Default method
+    default void printDescription() {
+        System.out.println("Electronic Description");
+    }
+}
+```
+
 #### What is method overloading?
 * Overloading allows different methods to have the same name, but different signatures where the signature can differ
  by the number of input parameters or type of input parameters or both.
@@ -281,10 +493,60 @@ class Child extends Parent {
 ```
 
 #### Explain how object oriented languages attempt to simplify memory management for Programmers.
+* Java objects reside in an area called the heap. The heap is created when the JVM starts up and may increase or
+ decrease in size while the application runs.
+* When the heap becomes full, garbage is collected. During the garbage collection objects that are no longer used are
+ cleared, thus making space for new objects. 
+
 #### Explain the “Single Responsibility” principle!
+* This principle states that each class should have one responsibility, one single purpose.
+* This means that a class will do only one job, which leads us to conclude it should have only one reason to change.
+
 #### What is an object oriented program? Explain, show.
+* An OOP program model real-life entities: classes are blueprints or templates for objects. We use them to describe
+ types of entities.
+* On the other hand, objects are living entities, created from classes. They contain certain states within their
+ fields and present certain behaviors with their methods.
+```java
+class Car {
+    // fields
+    String type;
+    String model;
+    String color;
+    int speed;
+    // constructor
+    Car(String type, String model, String color) {
+        this.type = type;
+        this.model = model;
+        this.color = color;
+    }
+    // methods
+    int increaseSpeed(int increment) {
+        this.speed = this.speed + increment;
+        return this.speed;
+    }
+}
+public class Implement {
+    public static void main(String[] args) { 
+        Car focus = new Car("Ford", "Focus", "red");
+        Car auris = new Car("Toyota", "Auris", "blue");
+        Car golf = new Car("Volkswagen", "Golf", "green");
+    }
+}
+```
+
 #### How do you make a class immutable? What do you need to watch out for?
+* Immutable class means that once an object is created, we cannot change its content. 
+* In Java, all the wrapper classes (like Integer, Boolean, Byte, Short) and String class is immutable.
+* Following are the requirements:
+  * The class must be declared as final (So that child classes can’t be created)
+  * Data members in the class must be declared as final (So that we can’t change the value of it after object creation)
+  * A parameterized constructor
+  * Getter method for all the variables in it
+  * No setters(To not have the option to change the value of the instance variable)
+
 #### How many instances can be created for an abstract class?
+* We cannot create an instance of an abstract class because it does not have a complete implementation.
 
 ## Programming languages
 

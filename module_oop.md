@@ -163,7 +163,55 @@ public class LinkedList {
 ### Procedural
 
 #### What is casting? What is the difference between up vs downcasting?
+* Casting is the process of making a variable behaves as a variable of another type.
+* Casting from a subclass to a superclass is called upcasting. Typically, the upcasting is implicitly performed by
+ the compiler.
+* Downcasting is casting from a superclass to a subclass.
+```java
+// Parent class 
+class Parent { 
+	String name; 
+	// A method which prints the signature of the parent class 
+	void method() { System.out.println("Method from Parent"); } 
+} 
+
+// Child class 
+class Child extends Parent { 
+	int id; 
+	// Overriding the parent method to print the signature of the child class 
+	@Override
+	void method() { System.out.println("Method from Child"); } 
+} 
+// Upcasting and downcasting 
+public class Example {
+	public static void main(String[] args) { 
+		// Upcasting 
+		Parent p = new Child(); 
+		p.name = "Test"; 
+		// This parameter is not accessible p.id = 1; 
+		System.out.println(p.name); 
+		p.method(); 
+
+		// Trying to Downcasting Implicitly 
+		// Child c = new Parent(); - > compile time error 
+
+		// Downcasting Explicitly 
+		Child c = (Child) p; 
+
+		c.id = 1; 
+		System.out.println(c.name); 
+		System.out.println(c.id); 
+		c.method(); 
+	} 
+} 
+```
+
 #### Which order should we catch the exceptions? Why?
+* The order is whatever matches first, gets executed. 
+* If the first catch matches the exception, it executes, if it doesn't, the next one is tried and on and on until one
+ is matched or none are.
+* When catching exceptions you want to always catch the most specific first and then the most generic (as
+ RuntimeException or Exception).
 
 ### Object-oriented
 
@@ -175,10 +223,19 @@ public class LinkedList {
 #### What are access modifiers?
 #### What is data hiding?
 #### Can a static method use non-static members?
+* Non-static data cannot be used in static methods because there is no well-defined variable to operate on.
+* Non-static variables are part of the objects themselves. To use a non-static variable, you need to specify which
+ instance of the class the variable belongs to.
+
 #### What is the difference between hiding a static method and overriding an instance method?
 #### Define the following terms: Instantiation, Attribute, Method
 #### Could we access a static variable (or method) from a non-static method? Why?
+* Non-static methods can access any static method and static variable also, without using the object of the class.
+
 #### Could we access a non-static variable (or method) from a static method? Why?
+* In static method, the method can only access only static data members and static methods of another class or same
+ class but cannot access non-static methods and variables.
+
 #### How many instances you have of a static variable of a given class?
 #### Why is it not a good practice to write a lot of static methods?
 #### What are the features of static attributes and static methods of a class? What are the benefits, when to use them?
@@ -188,7 +245,41 @@ public class LinkedList {
 #### Difference between overloading and overriding?
 #### What are the Object Oriented Principles? Explain the concepts with realistic examples!
 #### What is method overloading?
+* Overloading allows different methods to have the same name, but different signatures where the signature can differ
+ by the number of input parameters or type of input parameters or both.
+* Overloading is related to compile-time (or static) polymorphism.
+```java
+class Adder{  
+    static int add(int a,int b){return a+b;}  
+    static int add(int a,int b,int c){return a+b+c;}  
+}  
+```
+
 #### What is method overriding?
+* Overriding is a feature that allows a subclass or child class to provide a specific implementation of a method that
+ is already provided by one of its super-classes or parent classes.
+* When a method in a subclass has the same name, same parameters or signature, and same return type(or sub-type) as a
+ method in its super-class, then the method in the subclass is said to override the method in the super-class.
+```java
+// Base Class 
+class Parent { 
+    void show() 
+    { 
+        System.out.println("Parent's show()"); 
+    } 
+} 
+  
+// Inherited class 
+class Child extends Parent { 
+    // This method overrides show() of Parent 
+    @Override
+    void show() 
+    { 
+        System.out.println("Child's show()"); 
+    } 
+} 
+```
+
 #### Explain how object oriented languages attempt to simplify memory management for Programmers.
 #### Explain the “Single Responsibility” principle!
 #### What is an object oriented program? Explain, show.
@@ -237,6 +328,27 @@ public class LinkedList {
 #### What does "final" mean in case of a variable, method or a class?
 #### What is the super keyword?
 #### What are “generics”? When to use? Show examples.
+* Generics enable types (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+* The difference is that the inputs to formal parameters are values, while the inputs to type parameters are types.
+```java
+/**
+ * Generic version of the Box class.
+ * @param <T> the type of the value being boxed
+ */
+public class Box<T> {
+    // T stands for "Type"
+    private T t;
+
+    public void set(T t) { this.t = t; }
+    public T get() { return t; }
+}
+```
+* To instantiate this class, use the new keyword, as usual, but place <Integer> between the class name and the
+ parenthesis:
+ ```
+Box<Integer> integerBox = new Box<Integer>();
+```
+
 #### What is the benefit of having “generic” containers?
 #### Given two Java programs on two different machines. How can you communicate between the two? What are the possible ways?
 #### What is an annotation? What can be annotated and how? Show examples.

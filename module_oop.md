@@ -243,7 +243,7 @@ public class Example {
 * There are two types of constructors in Java: no-arg constructor, and parameterized constructor:
     * a _no-argument constructor_ takes no arguments. It is called "Default Constructor" when it doesn't have any
      parameter.
-    * a constructor which has a specific number of parameters is called a parameterized constructor. It is used to
+    * a constructor which has a specific number of parameters is called a _parameterized constructor_. It is used to
      provide different values to distinct objects. However, you can provide the same values also.
 
 #### What is an interface?
@@ -593,7 +593,7 @@ public class Implement {
 * It is a specification that provides runtime environment in which java bytecode can be executed.
 
 #### What is the difference between the JRE and the JDK?
-* JDK is an abstract machine. It is a specification that provides runtime environment in which java bytecode can be
+* JDK is an abstract machine. It is a specification that provides runtime environment in which Java bytecode can be
  executed.
 * The difference between JDK and JRE is that JDK is the software development kit for java while JRE is the place
  where you run your programs.
@@ -621,7 +621,7 @@ public class Implement {
  values method that returns an array containing all of the values of the enum in the order they are declared.)
 
 #### When would you use a private/protected/public attribute? What is the difference?
-* Private; only the class in which it is declared can see it.
+* Private: only the class in which it is declared can see it.
 * Protected: can be seen by subclasses or package members.
 * Public: Everyone can see it.
 

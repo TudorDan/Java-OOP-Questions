@@ -604,8 +604,15 @@ public class Implement {
 * A long on the other hand, is a primitive type and part of the language itself.
 
 #### Can a long store bigger numbers than a Long?
-* The Long class wraps a value of the primitive type long in an object.
-* If values are out of the range -128 to 127, Use the BigInteger or BigDecimal values.
+* Every object contains a single value of the corresponding primitive type.
+* Java has a two-fold type system consisting of primitives such as int, boolean and reference types such as Integer
+, Boolean. Every primitive type corresponds to a reference type.
+* The process of converting a primitive type to a reference one is called _autoboxing_, the opposite process is called
+_unboxing_.
+```
+Integer j = 1;          // autoboxing
+int i = new Integer(1); // unboxing
+```
 
 #### What kind of packages do you know under java.util.* ? Bring at least 3 examples.
 * Examples: ArrayList, Date, HashMap<K,V>, Random
